@@ -3,6 +3,11 @@ export async function main(ns) {
     let files = ns.ls(ns.getHostname());
     
     for (let file of files) {
+        if (file.endsWith('.exe')) {
+            ns.print(`Skipping .exe file: ${file}`);
+            continue;
+        }
+        
         try {
             ns.print(`Deleting file: ${file}`);
             ns.rm(file);
@@ -11,5 +16,5 @@ export async function main(ns) {
         }
     }
     
-    ns.print("All files deleted.");
+    ns.print("Non-.exe files deleted.");
 }
